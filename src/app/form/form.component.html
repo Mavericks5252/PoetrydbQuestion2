@@ -1,0 +1,53 @@
+<div class="example-container">
+    <form this.floatLabelControl (ngSubmit)="onSubmit()" #form="ngForm" method="GET">
+        <div class="example-form-fields">
+            <mat-form-field appearance="outline">
+                <mat-label>Author</mat-label>
+                <input matInput placeholder="Author" type="text" class="form-control" id="name" required
+                    [(ngModel)]="model.author" name="name" #name="ngModel">
+            </mat-form-field>
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                Name is required
+            </div>
+            <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="Title" type="text" class="form-control" id="title" required
+                    [(ngModel)]="model.title" name="title" #name="ngModel">
+            </mat-form-field>
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                Title is required
+            </div>
+        </div>
+    </form>
+
+
+    <div class="example-button-row">
+        <button mat-raised-button (click)="getData()">Search by author and title</button>
+        <button mat-raised-button (click)="getAuthorData()">Get poems from
+            author</button>
+        <button mat-raised-button (click)="getTitleData()">Get poems from title</button>
+    </div>
+</div>
+
+
+
+<div *ngFor="let item of newItems | keyvalue">
+    <div id="{{item.key}}">
+        <div class="item" *ngFor="let value of item.value">
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Author: {{item.key}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Title: {{value.title}}
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <li *ngFor="let lines of value.lines">
+                    {{ lines}}
+                </li>
+                <div>{{value.linecount}} lines in poem</div>
+            </mat-expansion-panel>
+        </div>
+    </div>
+</div>
