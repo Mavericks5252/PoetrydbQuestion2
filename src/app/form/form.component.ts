@@ -13,13 +13,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource, MatTreeModule } from '@angular/material/tree';
 import { MatTable, } from '@angular/material/table';
-
-
-
 import { formData } from '../formData';
 import { PoetryData } from '../poetryData';
 import { outputAst } from '@angular/compiler';
-//<form [formGroup]="options" (ngSubmit)="onSubmit()" #form="ngForm" method="GET">
 
 @Component({
   selector: 'app-form',
@@ -35,6 +31,7 @@ export class FormComponent implements OnInit {
   newItems = {};
 
 
+  //this component handles the user input and displays the data returned from the api. 
 
 
   ngOnInit(): void {
@@ -44,6 +41,8 @@ export class FormComponent implements OnInit {
 
   onSubmit() { this.submitted = true; }
 
+
+  //reorder the json to be grouped by author
   groupByAuthor(array: any) {
     return array.reduce((r: any, a: any) => {
       r[a.author] = r[a.author] || [];
@@ -61,6 +60,7 @@ export class FormComponent implements OnInit {
   }
 
 
+  //for diagnostic on html
   log(val: any) { console.log(val); }
 
 
@@ -70,8 +70,8 @@ export class FormComponent implements OnInit {
   If there is an error an alert is displayed. otherwise the data is grouped by authors then displayed
   To see the poem lines click on the entry you want.
   
-
-  Worth noting DO NOT SEARCH FOR titles with simile words the the work 'the' it will slow way down
+  ***************
+  Issue Worth noting: DO NOT SEARCH FOR titles with simile words the the work 'the' it will slow way down and potentially crash as it returns upward of 2k poems each with many lines
    */
 
 

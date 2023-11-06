@@ -1,3 +1,4 @@
+//interface for api returned data
 export class PoetryData {
     constructor(
         public author: string,
